@@ -685,6 +685,7 @@ namespace grove {
         return isWifiConnected
 
 //change for testing
+        let response2 = ""
         response2 = sendAtCmd("AT+CIFSR")
             basic.showString(response2)
             basic.pause(1000)
