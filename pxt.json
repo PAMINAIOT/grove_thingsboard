@@ -1,6 +1,6 @@
 {
     "name": "grove2thingsboard",
-    "version": "test01",
+    "version": "test03",
     "description": "PL MakeCode package for Grove Seeed Studio modules",
     "license": "MIT",
     "dependencies": {
@@ -17,7 +17,7 @@
     ],
     "public": true,
     "supportedTargets": [
-        "calliopemini"
+        "calliopemini, microbit"
     ],
     "preferredEditor": "tsprj"
 }
