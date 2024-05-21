@@ -1,6 +1,6 @@
-# Grove
+# Grove2Thingsboard
 
-MakeCode package for for Grove Seeed Studio modules.
+PL MakeCode package for for Grove Seeed Studio modules.
 
 ## Basic usage
 
