@@ -683,6 +683,15 @@ namespace grove {
     //% group="UartWiFi"
     export function wifiOK() {
         return isWifiConnected
+//change for testing
+        response2 = sendAtCmd("AT+CIFSR")
+            basic.showString(response2)
+            basic.pause(1000)
+        response2 = sendAtCmd("AT+CIPSTATUS")
+            basic.showString(response2)
+            basic.pause(1000)
+//end of change
+            
     }
 
     /**
