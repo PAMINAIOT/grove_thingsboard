@@ -135,7 +135,7 @@ Use ``||point||`` to open or close point dispay.
 Use ``||clear||`` to clean display.
 
 ### Grove - UART WiFi V2
-
+Connect to thingsboard
 Connect to a WiFi and send data to ThinkSpeak or IFTTT, specify the UART tx and rx pin.
 
 ```blocks
