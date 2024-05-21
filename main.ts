@@ -671,6 +671,12 @@ namespace grove {
         sendAtCmd(`AT+CWJAP="${ssid}","${passwd}"`)
         result = waitAtResponse("WIFI GOT IP", "ERROR", "None", 20000)
 
+        basic.showString(sendAtCmd("AT+CIFSR"))
+        basic.pause(1000)
+        basic.showString(sendAtCmd("AT+CIPSTATUS"))
+        basic.pause(1000)
+        
+
         if (result == 1) {
             isWifiConnected = true
         }
@@ -682,19 +688,7 @@ namespace grove {
     //% block="Wifi OK?"
     //% group="UartWiFi"
     export function wifiOK() {
-        return isWifiConnected
-
-//change for testing
-        
-    let response2 = ""
-        response2 = sendAtCmd("AT+CIFSR")
-            basic.showString(response2)
-            basic.pause(1000)
-        response2 = sendAtCmd("AT+CIPSTATUS")
-            basic.showString(response2)
-            basic.pause(1000)
-//end of change
-            
+        return isWifiConnected          
     }
 
     /**
