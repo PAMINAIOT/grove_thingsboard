@@ -676,7 +676,6 @@ namespace grove {
         basic.showString(sendAtCmd("AT+CIPSTATUS"))
         basic.pause(1000)
         
-
         if (result == 1) {
             isWifiConnected = true
         }
