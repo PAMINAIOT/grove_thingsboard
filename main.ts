@@ -671,9 +671,9 @@ namespace grove {
         sendAtCmd(`AT+CWJAP="${ssid}","${passwd}"`)
         result = waitAtResponse("WIFI GOT IP", "ERROR", "None", 20000)
 
-        basic.showString(sendAtCmd("AT+CIFSR"))
+        sendAtCmd("AT+CIFSR")
         basic.pause(1000)
-        basic.showString(sendAtCmd("AT+CIPSTATUS"))
+        sendAtCmd("AT+CIPSTATUS")
         basic.pause(1000)
         
         if (result == 1) {
