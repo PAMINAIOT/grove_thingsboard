@@ -719,14 +719,14 @@ namespace grove {
         function sendToThingsBoard(temperature: number) {
             const url = 'http://paminasogo.ddns.net:9090/api/v1/wV0EikPcEMHcE3u3zvgI/telemetry';
             const payload = JSON.stringify({ temperature: temperature});
-            const httpRequest = "Content-Length: ${payload.length}\r\n" + "POST /api/v1/wV0EikPcEMHcE3u3zvgI/telemetry HTTP/1.1\r\n" + "Host: http://paminasogo.ddns.net:9090\r\n" + "Content-Type: application/json\r\n" + "${payload}";
+            const httpRequest = `POST /api/v1/wV0EikPcEMHcE3u3zvgI/telemetry HTTP/1.1\r\n` + `Host: paminasogo.ddns.net:9090\r\n` + `Content-Type: application/json\r\n` + `Content-Length: ${payload.length}\r\n\r\n` + `${payload}`;
 
             sendAtCmd("AT+CIPSEND=" + httpRequest);
             result = waitAtResponse(">", "OK", "ERROR", 2000);
             output = result.toString();
             basic.showString(output);
 }
-sendToThingsBoard(60);
+    sendToThingsBoard(60);
         sendAtCmd("AT+CIPMODE=0");
     }
 
