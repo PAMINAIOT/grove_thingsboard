@@ -734,6 +734,8 @@ namespace grove {
     }
     // HTTP-POST Daten an ThingsBoard senden
     function sendTelemetry(data: string) {
+        let output =""
+        let result = 0
         let httpRequest = "POST /api/v1/" + "wV0EikPcEMHcE3u3zvgI" + "/telemetry HTTP/1.1\r\n"
             + "Host: " + "http://paminasogo.ddns.net:9090" + "\r\n"
             + "Content-Type: application/json\r\n"
@@ -743,14 +745,23 @@ namespace grove {
 
         debug("Verbindung initialisieren")
         sendAtCmd("AT+CIPSTART=\"TCP\",\"" + "http://paminasogo.ddns.net:9090" + "\",80\r\n")
+        result = waitAtResponse("OK", "ALREADY CONNECTED", "ERROR", 2000);
+        output = result.toString();
+        basic.showString(output);
         basic.pause(1000)
 
         debug("Datenlänge senden")
         sendAtCmd("AT+CIPSEND=" + httpRequest.length + "\r\n")
+        result = waitAtResponse(">", "OK", "ERROR", 2000)
+        output = result.toString();
+        basic.showString(output);
         basic.pause(1000)
 
         debug("Daten senden")
         sendAtCmd(httpRequest)
+        result = waitAtResponse(">", "OK", "ERROR", 2000)
+        output = result.toString();
+        basic.showString(output);
         basic.pause(1000)
 
         sendAtCmd("AT+CIPCLOSE\r\n")
