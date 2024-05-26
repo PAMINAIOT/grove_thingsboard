@@ -679,6 +679,36 @@ namespace grove {
         if (result == 1) {
             isWifiConnected = true
         }
+        let response3 = ""
+        let httpRequest = ""
+        let response2 = ""
+        let response = ""
+        let temperature = 55
+        let humidity = 60
+        
+        // Beispiel-AT-Kommando senden und Antwort anzeigen
+        basic.forever(function () {
+            if (input.buttonIsPressed(Button.A)) {
+                sendAtCmd("AT")
+                
+                let data = {
+                    "temperature": temperature,
+                    "humidity": humidity
+                }
+                let payload = JSON.stringify(data)
+                // HTTP-POST-Anfrage erstellen
+                httpRequest = `POST /api/v1/wV0EikPcEMHcE3u3zvgI/telemetry HTTP/1.1\r\n` + `Host: paminasogo.ddns.net:9090\r\n` + `Content-Type: application/json\r\n` + `Content-Length: ${payload.length}\r\n\r\n` + `${payload}`
+                sendAtCmd("AT+CIPSTART=\"TCP\",\"" + "paminasogo.ddns.net" + "\",9090")
+                sendAtCmd("AT+CIPSEND=" + (httpRequest.length + 2))
+                sendAtCmd("AT+CIPSEND=" + httpRequest)
+                
+                sendAtCmd("AT+CIPCLOSE")
+                
+            }
+            
+        })
+
+
     }
 
     /**
