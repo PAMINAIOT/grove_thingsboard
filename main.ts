@@ -715,20 +715,51 @@ namespace grove {
         result = waitAtResponse("OK", "ALREADY CONNECTED", "ERROR", 2000);
         output = result.toString();
         basic.showString(output);
-        sendAtCmd("AT+CIPMODE=1");
+        /*sendAtCmd("AT+CIPMODE=1");
         function sendToThingsBoard(temperature: number) {
             const url = 'http://paminasogo.ddns.net:9090/api/v1/wV0EikPcEMHcE3u3zvgI/telemetry';
             const payload = JSON.stringify({ temperature: temperature});
             const httpRequest = `Content-Length: ${payload.length}\r\n\r\n` + `POST /api/v1/wV0EikPcEMHcE3u3zvgI/telemetry HTTP/1.1\r\n` + `Host: paminasogo.ddns.net:9090\r\n` + `Content-Type: application/json\r\n` + `${payload}`;
 
-            sendAtCmd("AT+HTTPCPOST="+ url + 1 /*+httpRequest*/);
+            sendAtCmd("AT+HTTPCPOST="+ url + 1 +httpRequest);
             result = waitAtResponse(">", "OK", "ERROR", 2000);
             output = result.toString();
             basic.showString(output);
 }
     sendToThingsBoard(60);
-        sendAtCmd("AT+CIPMODE=0");
+        sendAtCmd("AT+CIPMODE=0");*/
     }
+
+    // HTTP-POST Daten an ThingsBoard senden
+    function sendTelemetry(data: string) {
+        let httpRequest = "POST /api/v1/" + "wV0EikPcEMHcE3u3zvgI" + "/telemetry HTTP/1.1\r\n"
+            + "Host: " + "http://paminasogo.ddns.net:9090" + "\r\n"
+            + "Content-Type: application/json\r\n"
+            + "Content-Length: " + data.length + "\r\n"
+            + "\r\n"
+            + data
+
+        serial.writeString("AT+CIPSTART=\"TCP\",\"" + "http://paminasogo.ddns.net:9090" + "\",80\r\n")
+        basic.pause(1000)
+
+        serial.writeString("AT+CIPSEND=" + httpRequest.length + "\r\n")
+        basic.pause(1000)
+
+        serial.writeString(httpRequest)
+        basic.pause(1000)
+
+        serial.writeString("AT+CIPCLOSE\r\n")
+    }
+
+    input.onButtonPressed(Button.A, function () {
+        let temperature = input.temperature()
+        let telemetryData = "{\"temperature\":" + temperature + "}"
+
+        sendTelemetry(telemetryData)
+        basic.showIcon(IconNames.Yes)
+    })
+
+    basic.showString("Ready")
 
     /**
      * Check if Grove - Uart WiFi V2 is connected to Wifi
