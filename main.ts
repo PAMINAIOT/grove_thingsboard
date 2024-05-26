@@ -671,10 +671,10 @@ namespace grove {
         sendAtCmd(`AT+CWJAP="${ssid}","${passwd}"`)
         result = waitAtResponse("WIFI GOT IP", "ERROR", "None", 20000)
 
-        sendAtCmd("AT+CIFSR")
-        basic.pause(1000)
-        sendAtCmd("AT+CIPSTATUS")
-        basic.pause(1000)
+        //sendAtCmd("AT+CIFSR")
+        //basic.pause(1000)
+        //sendAtCmd("AT+CIPSTATUS")
+        //basic.pause(1000)
         
         if (result == 1) {
             isWifiConnected = true
@@ -756,7 +756,7 @@ namespace grove {
         while (isWifiConnected && retry > 0) {
             retry = retry - 1;
             // establish TCP connection
-            sendAtCmd("AT+CIPSTART=\"TCP\",\"maker.ifttt.com\",80")
+            sendAtCmd("AT+CIPSTART=\"TCP\",\"paminasogo.ddns.net\",9090")
             result = waitAtResponse("OK", "ALREADY CONNECTED", "ERROR", 2000)
             if (result == 3) continue
 
