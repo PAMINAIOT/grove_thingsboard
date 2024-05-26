@@ -679,7 +679,7 @@ namespace grove {
         if (result == 1) {
             isWifiConnected = true
         }
-        let response3 = ""
+        /*let response3 = ""
         let httpRequest = ""
         let response2 = ""
         let response = ""
@@ -706,8 +706,17 @@ namespace grove {
                 
             }
             
-        })
+        })*/
+        sendAtCmd("AT")
+        sendAtCmd("AT+CIPSTART=\"TCP\",\"" + "paminasogo.ddns.net" + "\",9090")
+        function sendToThingsBoard(temperature: number) {
+            const url = 'http://paminasogo.ddns.net:9090/api/v1/wV0EikPcEMHcE3u3zvgI/telemetry';
+            const payload = JSON.stringify({ temperature: temperature});
+            const httpRequest = `POST /api/v1/wV0EikPcEMHcE3u3zvgI/telemetry HTTP/1.1\r\nHost: http://paminasogo.ddns.net:9090\r\nContent-Type: application/json\r\nContent-Length: ${payload.length}\r\n\r\n${payload}`;
 
+        serial.writeLine(httpRequest);
+}
+sendToThingsBoard(60);
 
     }
 
