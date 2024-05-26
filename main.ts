@@ -692,8 +692,8 @@ namespace grove {
                 sendAtCmd("AT")
                 sendAtCmd("AT+CIPSTART=\"TCP\",\"" + "paminasogo.ddns.net" + "\",9090")
                 let data = {
-                    "temperature": temperature,
-                    "humidity": humidity
+                    temperature: 60,
+                    //humidity: humidity
                 }
                 let payload = JSON.stringify(data)
                 // HTTP-POST-Anfrage erstellen
