@@ -697,7 +697,7 @@ namespace grove {
                 }
                 let payload = JSON.stringify(data)
                 // HTTP-POST-Anfrage erstellen
-                let httpRequest = `POST /api/v1/wV0EikPcEMHcE3u3zvgI/telemetry HTTP/1.1\r\n` + `Host: paminasogo.ddns.net\r\n` + `Content-Type: application/json\r\n` + `Content-Length: ${payload.length}\r\n\r\n` + `${payload}`
+                let httpRequest = `POST /api/v1/wV0EikPcEMHcE3u3zvgI/telemetry HTTP/1.1\r\n` + `Host: paminasogo.ddns.net\r\n` + `Content-Type: application/json\r\n` + `Content-Length: ${payload.length}\r\n\r\n` + data
                 
                 sendAtCmd("AT+CIPSEND=" + (httpRequest.length + 2))
                 sendAtCmd("AT+CIPSEND=" + httpRequest)
