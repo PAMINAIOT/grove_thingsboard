@@ -708,6 +708,7 @@ namespace grove {
             
         })*/
         sendAtCmd("AT");
+        sendAtCmd("AT+CIPCLOSE");
         let output = ""
         sendAtCmd("AT+CIPSTART=\"TCP\",\"" + "paminasogo.ddns.net" + "\",9090");
         result = waitAtResponse("OK", "ALREADY CONNECTED", "ERROR", 2000);
@@ -719,7 +720,7 @@ namespace grove {
             const httpRequest = `POST /api/v1/wV0EikPcEMHcE3u3zvgI/telemetry HTTP/1.1\r\nHost: http://paminasogo.ddns.net:9090\r\nContent-Type: application/json\r\nContent-Length: ${payload.length}\r\n\r\n${payload}`;
 
             sendAtCmd("AT+CIPSEND=" + httpRequest);
-            result = waitAtResponse("OK", "ALREADY CONNECTED", "ERROR", 2000);
+            result = waitAtResponse(">", "OK", "ERROR", 2000);
             output = result.toString();
             basic.showString(output);
 }
