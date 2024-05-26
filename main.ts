@@ -739,16 +739,16 @@ namespace grove {
             + "\r\n"
             + data
 
-        serial.writeString("AT+CIPSTART=\"TCP\",\"" + "http://paminasogo.ddns.net:9090" + "\",80\r\n")
+        sendAtCmd("AT+CIPSTART=\"TCP\",\"" + "http://paminasogo.ddns.net:9090" + "\",80\r\n")
         basic.pause(1000)
 
-        serial.writeString("AT+CIPSEND=" + httpRequest.length + "\r\n")
+        sendAtCmd("AT+CIPSEND=" + httpRequest.length + "\r\n")
         basic.pause(1000)
 
-        serial.writeString(httpRequest)
+        sendAtCmd(httpRequest)
         basic.pause(1000)
 
-        serial.writeString("AT+CIPCLOSE\r\n")
+        sendAtCmd("AT+CIPCLOSE\r\n")
     }
 
     input.onButtonPressed(Button.A, function () {
