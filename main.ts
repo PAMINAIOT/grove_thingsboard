@@ -708,7 +708,11 @@ namespace grove {
             
         })*/
         sendAtCmd("AT");
+        let output = ""
         sendAtCmd("AT+CIPSTART=\"TCP\",\"" + "paminasogo.ddns.net" + "\",9090");
+        result = waitAtResponse("OK", "ALREADY CONNECTED", "ERROR", 2000)
+        output = result.toString()
+        basic.showString(output)
         function sendToThingsBoard(temperature: number) {
             const url = 'http://paminasogo.ddns.net:9090/api/v1/wV0EikPcEMHcE3u3zvgI/telemetry';
             const payload = JSON.stringify({ temperature: temperature});
