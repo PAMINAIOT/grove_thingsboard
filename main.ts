@@ -721,7 +721,7 @@ namespace grove {
             const payload = JSON.stringify({ temperature: temperature});
             const httpRequest = `Content-Length: ${payload.length}\r\n\r\n` + `POST /api/v1/wV0EikPcEMHcE3u3zvgI/telemetry HTTP/1.1\r\n` + `Host: paminasogo.ddns.net:9090\r\n` + `Content-Type: application/json\r\n` + `${payload}`;
 
-            sendAtCmd("AT+HTTPCPOST="+ url + httpRequest);
+            sendAtCmd("AT+HTTPCPOST="+ url);
             result = waitAtResponse(">", "OK", "ERROR", 2000);
             output = result.toString();
             basic.showString(output);
