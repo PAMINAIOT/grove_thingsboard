@@ -785,28 +785,7 @@ namespace grove {
     
 }
            
-            /*let data = "GET /trigger/" + event + "/with/key/" + key
-            data = data + "?value1=" + value1
-            data = data + "&value2=" + value2
-            data = data + "&value3=" + value3
-            data = data + " HTTP/1.1"
-            data = data + "\u000D\u000A"
-            data = data + "User-Agent: curl/7.58.0"
-            data = data + "\u000D\u000A"
-            data = data + "Host: maker.ifttt.com"
-            data = data + "\u000D\u000A"
-            data = data + "Accept: */*"
-            data = data + "\u000D\u000A"
-
-            /*sendAtCmd("AT+CIPSEND=" + (data.length + 2))
-            result = waitAtResponse(">", "OK", "ERROR", 2000)
-            if (result == 3) continue
-            sendAtCmd(data)
-            result = waitAtResponse("SEND OK", "SEND FAIL", "ERROR", 5000)
-            // close the TCP connection
-            // sendAtCmd("AT+CIPCLOSE")
-            // waitAtResponse("OK", "ERROR", "None", 2000)
-            if (result == 1) break*/
+            
         }
     }
 
