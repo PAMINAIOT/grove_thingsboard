@@ -744,7 +744,7 @@ namespace grove {
     //% Daten1.defl="Hello"
     //% Daten2.defl="Calliope"
     //% Daten3.defl="mini"
-    export function sendToThingsboard(Serveradresse: string, Port: string, AccessToken: string, Daten1: string, Daten2: string, Daten3: string) {
+    export function sendToThingsboard(Serveradresse: string, Port: string, AccessToken: string, Daten1: number, Daten2: number, Daten3: number) {
         let result = 0
         let retry = 2
         let data = {
