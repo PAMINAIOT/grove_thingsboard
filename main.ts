@@ -753,6 +753,12 @@ namespace grove {
                     "Daten3": Daten3
                     }
 
+        // close the previous TCP connection
+        if (isWifiConnected) {
+            sendAtCmd("AT+CIPCLOSE")
+            waitAtResponse("OK", "ERROR", "None", 2000)
+        }
+
         const payload = JSON.stringify(data);
         const request = `POST /api/v1/${AccessToken}/telemetry HTTP/1.1\r\n` +
         `Host: ${Serveradresse}\r\n` +
@@ -760,7 +766,10 @@ namespace grove {
         `Content-Length: ${payload.length}\r\n\r\n` +
         `${payload}`;
 
-        sendAtCmd(`AT+CIPSTART="TCP","${serverAddress}",${serverPort}\r\n`);
+        while (isWifiConnected && retry > 0) {
+            retry = retry - 1;
+
+        sendAtCmd(`AT+CIPSTART="TCP","${Serveradresse}",${Port}\r\n`);
         result = waitAtResponse("OK", "ALREADY CONNECTED", "ERROR", 2000)
             if (result == 3) continue
         
@@ -778,14 +787,7 @@ namespace grove {
             waitAtResponse("OK", "ERROR", "None", 2000)
         }
 
-        while (isWifiConnected && retry > 0) {
-            retry = retry - 1;
-           
-
-    
-}
-           
-            
+             
         }
     }
 
@@ -810,3 +812,4 @@ namespace grove {
         serial.writeString(cmd + "\u000D\u000A")
     }
 }
+
