@@ -671,44 +671,10 @@ namespace grove {
         sendAtCmd(`AT+CWJAP="${ssid}","${passwd}"`)
         result = waitAtResponse("WIFI GOT IP", "ERROR", "None", 20000)
 
-        //sendAtCmd("AT+CIFSR")
-        //basic.pause(1000)
-        //sendAtCmd("AT+CIPSTATUS")
-        //basic.pause(1000)
-        
+      
         if (result == 1) {
             isWifiConnected = true
         }
-        let response3 = ""
-        let httpRequest = ""
-        let response2 = ""
-        let response = ""
-        let temperature = 55
-        let humidity = 60
-        
-        // Beispiel-AT-Kommando senden und Antwort anzeigen
-        basic.forever(function () {
-            if (input.buttonIsPressed(Button.A)) {
-                sendAtCmd("AT")
-                sendAtCmd("AT+CIPSTART=\"TCP\",\"" + "paminasogo.ddns.net" + "\",9090")
-                let data = {
-                    temperature: 60,
-                    //humidity: humidity
-                }
-                let payload = JSON.stringify(data)
-                // HTTP-POST-Anfrage erstellen
-                let httpRequest = `POST /api/v1/wV0EikPcEMHcE3u3zvgI/telemetry HTTP/1.1\r\n` + `Host: paminasogo.ddns.net\r\n` + `Content-Type: application/json\r\n` + `Content-Length: ${payload.length}\r\n\r\n` + data
-                
-                sendAtCmd("AT+CIPSEND=" + (httpRequest.length + 2))
-                sendAtCmd("AT+CIPSEND=" + httpRequest)
-                
-                sendAtCmd("AT+CIPCLOSE")
-                
-            }
-            
-        })
-        sendAtCmd("AT");
-        sendAtCmd("AT+CIPCLOSE");
         
     }
     function debug(message: string) {
@@ -768,19 +734,44 @@ namespace grove {
     }
 
     /**
-     * Send data to IFTTT
+     * Send data to Thingsboard
      */
-    //% block="Send Data to your IFTTT Event|Event %event|Key %key|value1 %value1||value2 %value2|value3 %value3"
+    //% block="Send Data to your Thingsboard Server|Serveradresse %Server|Port %Port|AccessToken %Token|Daten1 %Daten1|Daten2 %Daten2|Daten3 %Daten3"
     //% group="UartWiFi"
-    //% event.defl="your Event"
-    //% key.defl="your Key"
-    //% value1.defl="Hello"
-    //% value2.defl="Calliope"
-    //% value3.defl="mini"
-    export function sendToIFTTT(event: string, key: string, value1: string, value2: string, value3: string) {
+    //% Serveradresse.defl="Dein Server"
+    //% Port.defl="Port(http)"
+    //% AccessToken.defl="API Token(Thingsboard)"
+    //% Daten1.defl="Hello"
+    //% Daten2.defl="Calliope"
+    //% Daten3.defl="mini"
+    export function sendToThingsboard(Serveradresse: string, Port: string, AccessToken: string, Daten1: string, Daten2: string, Daten3: string) {
         let result = 0
         let retry = 2
+        let data = {
+                    "Daten1": Daten1,
+                    "Daten2": Daten2,
+                    "Daten3": Daten3
+                    }
 
+        const payload = JSON.stringify(data);
+        const request = `POST /api/v1/${AccessToken}/telemetry HTTP/1.1\r\n` +
+        `Host: ${Serveradresse}\r\n` +
+        `Content-Type: application/json\r\n` +
+        `Content-Length: ${payload.length}\r\n\r\n` +
+        `${payload}`;
+
+        sendAtCmd(`AT+CIPSTART="TCP","${serverAddress}",${serverPort}\r\n`);
+        result = waitAtResponse("OK", "ALREADY CONNECTED", "ERROR", 2000)
+            if (result == 3) continue
+        
+        sendAtCmd(`AT+CIPSEND=${request.length}\r\n`);
+        result = waitAtResponse(">", "OK", "ERROR", 2000)
+            if (result == 3) continue
+        
+        sendAtCmd(request);
+        result = waitAtResponse("SEND OK", "SEND FAIL", "ERROR", 5000)
+            if (result == 1) break
+          
         // close the previous TCP connection
         if (isWifiConnected) {
             sendAtCmd("AT+CIPCLOSE")
@@ -789,12 +780,12 @@ namespace grove {
 
         while (isWifiConnected && retry > 0) {
             retry = retry - 1;
-            // establish TCP connection
-            sendAtCmd("AT+CIPSTART=\"TCP\",\"paminasogo.ddns.net\",9090")
-            result = waitAtResponse("OK", "ALREADY CONNECTED", "ERROR", 2000)
-            if (result == 3) continue
+           
 
-            let data = "GET /trigger/" + event + "/with/key/" + key
+    
+}
+           
+            /*let data = "GET /trigger/" + event + "/with/key/" + key
             data = data + "?value1=" + value1
             data = data + "&value2=" + value2
             data = data + "&value3=" + value3
@@ -807,7 +798,7 @@ namespace grove {
             data = data + "Accept: */*"
             data = data + "\u000D\u000A"
 
-            sendAtCmd("AT+CIPSEND=" + (data.length + 2))
+            /*sendAtCmd("AT+CIPSEND=" + (data.length + 2))
             result = waitAtResponse(">", "OK", "ERROR", 2000)
             if (result == 3) continue
             sendAtCmd(data)
@@ -815,7 +806,7 @@ namespace grove {
             // close the TCP connection
             // sendAtCmd("AT+CIPCLOSE")
             // waitAtResponse("OK", "ERROR", "None", 2000)
-            if (result == 1) break
+            if (result == 1) break*/
         }
     }
 
