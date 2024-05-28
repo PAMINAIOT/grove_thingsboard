@@ -736,7 +736,7 @@ namespace grove {
     /**
     * PAX Counter
     */
-    //% block="PAX Counter Anzahl|deviceCount"
+    //% block="PAX Counter"
     //% group="UartWifi"
     //% Anzahl.defl="deviceCount"
     export function scanForDevices(): number {
