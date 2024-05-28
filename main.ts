@@ -739,19 +739,8 @@ namespace grove {
     //% block="PAX Counter Anzahl|deviceCount"
     //% group="UartWifi"
     //% Anzahl.defl="deviceCount"
-
-    let deviceCount: number = 0;
-
-    // AT-Befehl senden
-    function sendATCommand(cmd: string, waitTime: number): string {
-        serial.writeString(cmd + "\r\n");
-        basic.pause(waitTime);
-        let response = serial.readString();
-        return response || "";
-    }
-
-    // WLAN-Scan durchführen und Geräte zählen
     export function scanForDevices(): number {
+    // WLAN-Scan durchführen und Geräte zählen
         const response: string = sendATCommand("AT+CWLAP", 5000);
         if (typeof response === "string") {
             const lines = response.split("\n");
@@ -761,12 +750,21 @@ namespace grove {
         }
         return deviceCount;
     }
+    let deviceCount: number = 0;
 
-
-    // Anzahl der gefundenen Geräte abrufen
-    export function getDeviceCount(): number {
-        return deviceCount;
+    // AT-Befehl senden
+    function sendATCommand(cmd: string, waitTime: number): string {
+        serial.writeString(cmd + "\r\n");
+        basic.pause(waitTime);
+        let response = serial.readString();
+        return response || "";
     }
+ 
+ 
+    // Anzahl der gefundenen Geräte abrufen
+    //export function getDeviceCount(): number {
+    //    return deviceCount;
+    //}
 
 
     /**
