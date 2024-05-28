@@ -732,6 +732,41 @@ namespace grove {
             if (result == 1) break
         }
     }
+    
+    /**
+    * PAX Counter
+    */
+    //% block="PAX Counter Anzahl|deviceCount"
+    //% group="UartWifi"
+
+    let deviceCount: number = 0;
+
+    // AT-Befehl senden
+    function sendATCommand(cmd: string, waitTime: number): string {
+        serial.writeString(cmd + "\r\n");
+        basic.pause(waitTime);
+        let response = serial.readString();
+        return response || "";
+    }
+
+    // WLAN-Scan durchführen und Geräte zählen
+    export function scanForDevices(): number {
+        const response: string = sendATCommand("AT+CWLAP", 5000);
+        if (typeof response === "string") {
+            const lines = response.split("\n");
+            deviceCount = lines.length - 1; // Die erste Zeile ist der Befehlsstatus, daher abziehen
+        } else {
+            deviceCount = 0;
+        }
+        return deviceCount;
+    }
+
+
+    // Anzahl der gefundenen Geräte abrufen
+    export function getDeviceCount(): number {
+        return deviceCount;
+    }
+
 
     /**
      * Send data to Thingsboard
