@@ -43,5 +43,5 @@
     "grove.onJoystick|block": "if Grove - Joystick direction|%key at|%xpin|and|%ypin",
     "grove.getJoystick|block": "read joystick direction at|%xpin|and|%ypin",
     "grove.sendToThinkSpeak|block": "Send data to your ThinkSpeak channel|Write API Key %apiKey|Field 1 %field1||Field 2 %field2|Field 3 %field3|Field 4 %field4|Field 5 %field5|Field 6 %field6|Field 7 %field7|Field 8 %field8",
-    "grove.sendToIFTTT|block": "Send data to your IFTTT event|Event %event|Key %key|Value 1 %value1|Value 2 %value2|Value 3 %value3"
+    "grove.sendToThingsboard|block": "Send Data to your Thingsboard Server|Serveradresse %Server|Port %Port|AccessToken %Token|Daten1 %Daten1|Daten2 %Daten2|Daten3 %Daten3"
 }
