@@ -738,7 +738,7 @@ namespace grove {
     */
     //% block="PAX Counter Anzahl|deviceCount"
     //% group="UartWifi"
-    //% Anzahl.defl=getDeviceCount
+    //% Anzahl.defl= deviceCount
 
     let deviceCount: number = 0;
 
