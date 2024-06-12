@@ -1,6 +1,6 @@
 {
     "name": "grove2thingsboard",
-    "version": "0.9.47",
+    "version": "0.9.48",
     "description": "PL MakeCode package for Grove Seeed Studio modules",
     "license": "MIT",
     "dependencies": {
