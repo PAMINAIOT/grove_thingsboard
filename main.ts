@@ -772,12 +772,12 @@ namespace grove {
      */
     //% block="Send Data to your Thingsboard Server|Serveradresse %Server|Port %Port|AccessToken %Token|Daten1 %Daten1|Daten2 %Daten2|Daten3 %Daten3"
     //% group="UartWiFi"
-    //% Serveradresse.defl="Dein Server"
-    //% Port.defl="Port(http)"
+    //% Serveradresse.defl="paminasogo.ddns.net"
+    //% Port.defl="9090"
     //% AccessToken.defl="API Token(Thingsboard)"
-    //% Daten1.defl="Hello"
-    //% Daten2.defl="Calliope"
-    //% Daten3.defl="mini"
+    //% Daten1.defl="0"
+    //% Daten2.defl="0"
+    //% Daten3.defl="0"
     export function sendToThingsboard(Serveradresse: string, Port: string, AccessToken: string, Daten1: number, Daten2: number, Daten3: number) {
         let result = 0
         let retry = 2
@@ -786,7 +786,7 @@ namespace grove {
                     "Daten2": Daten2,
                     "Daten3": Daten3
                     }
-
+        
         // close the previous TCP connection
         if (isWifiConnected) {
             sendAtCmd("AT+CIPCLOSE")
