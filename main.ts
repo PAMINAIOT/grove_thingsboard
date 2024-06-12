@@ -787,7 +787,7 @@ namespace grove {
     export function sendToThingsboard(Serveradresse: string, Port: string, AccessToken: string, Daten1: number, Daten2: number, Daten3: number, Daten4: number, Daten5: number, Daten6: number, Daten7: number, Daten8: number) {
         let result = 0
         let retry = 2
-        let data = {
+     /*   let data = {
                     "Daten1": Daten1,
                     "Daten2": Daten2,
                     "Daten3": Daten3,
@@ -796,8 +796,17 @@ namespace grove {
                     "Daten6": Daten6,
                     "Daten7": Daten7,
                     "Daten8": Daten8
-                    }
-        
+                    } */
+        let data = ""
+        if (!isNaN(Daten1)) data = data + "&Daten1=" + Daten1
+        if (!isNaN(Daten2)) data = data + "&Daten2=" + Daten2
+        if (!isNaN(Daten3)) data = data + "&Daten3=" + Daten3
+        if (!isNaN(Daten4)) data = data + "&Daten4=" + Daten4
+        if (!isNaN(Daten5)) data = data + "&Daten5=" + Daten5
+        if (!isNaN(Daten6)) data = data + "&Daten1=" + Daten6
+        if (!isNaN(Daten7)) data = data + "&Daten1=" + Daten7
+        if (!isNaN(Daten8)) data = data + "&Daten1=" + Daten8
+
         // close the previous TCP connection
         if (isWifiConnected) {
             sendAtCmd("AT+CIPCLOSE")
