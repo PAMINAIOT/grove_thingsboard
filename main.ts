@@ -770,7 +770,7 @@ namespace grove {
     /**
      * Send data to Thingsboard
      */
-    //% block="Send Data to your Thingsboard Server|Serveradresse %Server|Port %Port|AccessToken %Token|Daten1 %Daten1|Daten2 %Daten2|Daten3 %Daten3"
+    //% block="Send Data to your Thingsboard Server|Serveradresse %Server|Port %Port|AccessToken %Token|Daten1 %Daten1|Daten2 %Daten2|Daten3 %Daten3|Daten4 %Daten4|Daten5 %Daten5|Daten6 %Daten6|Daten7 %Daten7|Daten8 %Daten8"
     //% group="UartWiFi"
     //% expandableArgumentMode="enabled"
     //% Serveradresse.defl="paminasogo.ddns.net"
