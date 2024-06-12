@@ -776,14 +776,7 @@ namespace grove {
     //% Serveradresse.defl="paminasogo.ddns.net"
     //% Port.defl="9090"
     //% AccessToken.defl="API Token(Thingsboard)"
-    //% Daten1.defl="0"
-    //% Daten2.defl="0"
-    //% Daten3.defl="0"
-    //% Daten4.defl="0"
-    //% Daten5.defl="0"
-    //% Daten6.defl="0"
-    //% Daten7.defl="0"
-    //% Daten8.defl="0"
+    
     export function sendToThingsboard(Serveradresse: string, Port: string, AccessToken: string, Daten1: number, Daten2: number, Daten3: number, Daten4: number, Daten5: number, Daten6: number, Daten7: number, Daten8: number) {
         let result = 0
         let retry = 2
