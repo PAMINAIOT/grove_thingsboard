@@ -772,12 +772,11 @@ namespace grove {
      */
     //% block="Send Data to your Thingsboard Server|Serveradresse %Server|Port %Port|AccessToken %Token|Daten1 %Daten1|Daten2 %Daten2|Daten3 %Daten3|Daten4 %Daten4|Daten5 %Daten5|Daten6 %Daten6|Daten7 %Daten7|Daten8 %Daten8"
     //% group="UartWiFi"
-    
+    //% expandableArgumentMode="enabled"
     //% Serveradresse.defl="paminasogo.ddns.net"
     //% Port.defl="9090"
     //% AccessToken.defl="API Token(Thingsboard)"
-    //% expandableArgumentMode="enabled"
-
+    
     export function sendToThingsboard(Serveradresse: string, Port: string, AccessToken: string, Daten1: number = 0, Daten2: number = 0, Daten3: number = 0, Daten4: number = 0, Daten5: number = 0, Daten6: number = 0, Daten7: number = 0, Daten8: number = 0) {
         let result = 0
         let retry = 2
