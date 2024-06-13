@@ -790,15 +790,15 @@ namespace grove {
                     "Daten7": Daten7,
                     "Daten8": Daten8
                     } */
-        let data = ""
-        if (!isNaN(Daten1)) data = data + "&Daten1=" + Daten1
-        if (!isNaN(Daten2)) data = data + "&Daten2=" + Daten2
-        if (!isNaN(Daten3)) data = data + "&Daten3=" + Daten3
-        if (!isNaN(Daten4)) data = data + "&Daten4=" + Daten4
-        if (!isNaN(Daten5)) data = data + "&Daten5=" + Daten5
-        if (!isNaN(Daten6)) data = data + "&Daten6=" + Daten6
-        if (!isNaN(Daten7)) data = data + "&Daten7=" + Daten7
-        if (!isNaN(Daten8)) data = data + "&Daten8=" + Daten8
+        let data = {}
+        if (!isNaN(Daten1)) data = data + "Daten1:" + Daten1
+        if (!isNaN(Daten2)) data = data + "Daten2:" + Daten2
+        if (!isNaN(Daten3)) data = data + "Daten3:" + Daten3
+        if (!isNaN(Daten4)) data = data + "Daten4:" + Daten4
+        if (!isNaN(Daten5)) data = data + "Daten5:" + Daten5
+        if (!isNaN(Daten6)) data = data + "Daten6:" + Daten6
+        if (!isNaN(Daten7)) data = data + "Daten7:" + Daten7
+        if (!isNaN(Daten8)) data = data + "Daten8:" + Daten8
 
         // close the previous TCP connection
         if (isWifiConnected) {
