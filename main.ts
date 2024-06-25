@@ -745,8 +745,8 @@ namespace grove {
     // Anzahl Geräte AT+CWLIF
         const response: string = sendATCommand("AT+CWLIF", 5000);
         if (typeof response === "string") {
-            const lines = response.split("\n");
-            deviceCount = lines.length - 1; // Die erste Zeile ist der Befehlsstatus, daher abziehen
+            const lines = response//.split("\n");
+            deviceCount = lines.length// - 1; // Die erste Zeile ist der Befehlsstatus, daher abziehen
         } else {
             deviceCount = 0;
         }
