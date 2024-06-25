@@ -741,7 +741,9 @@ namespace grove {
     //% Anzahl.defl="deviceCount"
     export function scanForDevices(): number {
     // WLAN-Scan durchführen und Geräte zählen
-        const response: string = sendATCommand("AT+CWLAP", 5000);
+    // Anzahl AP AT+CWLAP
+    // Anzahl Geräte AT+CWLIF
+        const response: string = sendATCommand("AT+CWLIF", 5000);
         if (typeof response === "string") {
             const lines = response.split("\n");
             deviceCount = lines.length - 1; // Die erste Zeile ist der Befehlsstatus, daher abziehen
