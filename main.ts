@@ -669,7 +669,7 @@ namespace grove {
         result = waitAtResponse("OK", "ERROR", "None", 1000)
 
         // Wifi für den Dual mode
-        sendATCommand("AT+CWSAP=\"Freifunk\",\"Freifunk\",5,3", 500);
+        sendATCommand("AT+CWSAP=\"CalliAP\",\"CalliAP\",5,3", 500);
 
         sendAtCmd(`AT+CWJAP="${ssid}","${passwd}"`)
         result = waitAtResponse("WIFI GOT IP", "ERROR", "None", 20000)
