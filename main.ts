@@ -665,8 +665,11 @@ namespace grove {
         sendAtCmd("AT")
         result = waitAtResponse("OK", "ERROR", "None", 1000)
 
-        sendAtCmd("AT+CWMODE=1")
+        sendAtCmd("AT+CWMODE=3") //Test DualMode auf 3 vorher 1
         result = waitAtResponse("OK", "ERROR", "None", 1000)
+
+        // Wifi für den Dual mode
+        sendATCommand("AT+CWSAP=\"Freifunk\",\"Freifunk\",5,3", 500);
 
         sendAtCmd(`AT+CWJAP="${ssid}","${passwd}"`)
         result = waitAtResponse("WIFI GOT IP", "ERROR", "None", 20000)
@@ -742,10 +745,11 @@ namespace grove {
     export function scanForDevices(): number {
     // WLAN-Scan durchführen und Geräte zählen
     // Anzahl AP AT+CWLAP
+        
     // Anzahl Geräte AT+CWLIF
         const response: string = sendATCommand("AT+CWLIF", 5000);
         if (typeof response === "string") {
-            const lines = response//.split("\n");
+            const lines = response.split("\n");
             deviceCount = lines.length// - 1; // Die erste Zeile ist der Befehlsstatus, daher abziehen
         } else {
             deviceCount = 0;
