@@ -742,7 +742,7 @@ namespace grove {
     
     /**
     * PAX Counter
-    */
+    
     //% block="PAX Counter"
     //% group="UartWifi"
     //% Anzahl.defl="deviceCount"
@@ -754,14 +754,14 @@ namespace grove {
         const response: string = sendATCommand("AT+CWLIF", 5000);
         if (typeof response === "string") {
             const lines = response.split("\n");
-            deviceCount = lines.length// - 1; // Die erste Zeile ist der Befehlsstatus, daher abziehen
+            deviceCount = lines.length// - 1; // Die erste Zeile ist der Befehlsstatus, daher abziehen !Nur bei CWLAP!
         } else {
             deviceCount = 0;
         }
         return deviceCount;
     }
     let deviceCount: number = 0;
-
+    */
     // AT-Befehl senden
     function sendATCommand(cmd: string, waitTime: number): string {
         serial.writeString(cmd + "\r\n");
@@ -775,7 +775,7 @@ namespace grove {
     //export function getDeviceCount(): number {
     //    return deviceCount;
     //}
-
+    
 
     /**
      * Send data to Thingsboard
