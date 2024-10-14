@@ -850,7 +850,7 @@ namespace grove {
         // close the previous TCP connection
         if (isWifiConnected) {
             sendAtCmd("AT+CIPCLOSE")
-            waitAtResponse("OK", "ERROR", "None", 2000)
+            waitAtResponse("OK", "ERROR", "None", 200) //vorher 2000
         }
 
         const payload = JSON.stringify(data);
@@ -864,21 +864,21 @@ namespace grove {
             retry = retry - 1;
 
         sendAtCmd(`AT+CIPSTART="TCP","${Serveradresse}",${Port}\r\n`);
-        result = waitAtResponse("OK", "ALREADY CONNECTED", "ERROR", 2000)
+        result = waitAtResponse("OK", "ALREADY CONNECTED", "ERROR", 200) //vorher 2000
             if (result == 3) continue
         
         sendAtCmd(`AT+CIPSEND=${request.length}\r\n`);
-        result = waitAtResponse(">", "OK", "ERROR", 2000)
+        result = waitAtResponse(">", "OK", "ERROR", 200) //vorher 2000
             if (result == 3) continue
         
         sendAtCmd(request);
-        result = waitAtResponse("SEND OK", "SEND FAIL", "ERROR", 5000)
+        result = waitAtResponse("SEND OK", "SEND FAIL", "ERROR", 200) //vorher 5000
             if (result == 1) break
           
         // close the previous TCP connection
         if (isWifiConnected) {
             sendAtCmd("AT+CIPCLOSE")
-            waitAtResponse("OK", "ERROR", "None", 2000)
+            waitAtResponse("OK", "ERROR", "None", 200) //vorher 2000
         }
 
              
