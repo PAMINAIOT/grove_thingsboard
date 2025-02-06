@@ -17,7 +17,7 @@
     ],
     "public": true,
     "targetVersions": {
-        "target": "6.0.42",
+        "target": "7.0.3",
         "targetId": "calliopemini"
     },
     "supportedTargets": [
