@@ -44,4 +44,7 @@
     "grove.getJoystick|block": "read joystick direction at|%xpin|and|%ypin",
     "grove.sendToThinkSpeak|block": "Send data to your ThinkSpeak channel|Write API Key %apiKey|Field 1 %field1||Field 2 %field2|Field 3 %field3|Field 4 %field4|Field 5 %field5|Field 6 %field6|Field 7 %field7|Field 8 %field8",
     "grove.sendToThingsboard|block": "Send Data to your Thingsboard Server|Serveradresse %Server|Port %Port|AccessToken %Token|Daten1 %Daten1|Daten2 %Daten2|Daten3 %Daten3|Daten4 %Daten4|Daten5 %Daten5|Daten6 %Daten6|Daten7 %Daten7|Daten8 %Daten8"
+    "grove.aht20ReadTemperatureC|block": "[Grove - Temp&Humi Sensor]|Read the temperature(°C))",
+    "grove.aht20ReadTemperatureF|block": "[Grove - Temp&Humi Sensor]|Read the temperature(°F))",
+    "grove.aht20ReadHumidity|block": "[Grove - Temp&Humi Sensor]|Read the humidity"
 }
