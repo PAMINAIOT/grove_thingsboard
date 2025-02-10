@@ -9,8 +9,9 @@
     "files": [
         "README.md",
         "main.ts",
-        "blocks/GroveAHT20.ts",
-        "sensors/AHT20.ts"
+        "_locales/de/Grove-strings.json",
+        "_locales/uk/Grove-strings.json"
+        
     ],
     "testFiles": [
         "test.ts"
