@@ -665,15 +665,15 @@ namespace grove {
         sendAtCmd("AT")
         result = waitAtResponse("OK", "ERROR", "None", 1000)
 
-        sendAtCmd("AT+CWMODE=3") //Test DualMode auf 3 vorher 1
+        sendAtCmd("AT+CWMODE=1") //Test DualMode auf 1 vorher 3
         result = waitAtResponse("OK", "ERROR", "None", 1000)
         
         
         // Wifi für den Dual mode
-        sendATCommand("AT+CWSAP=\"CalliAP\",\"CalliAP\",5,3", 500);
+        // sendATCommand("AT+CWSAP=\"CalliAP\",\"CalliAP\",5,3", 500);
 
-        sendAtCmd("AT+CWDHCP_CUR=2,1") //DHCP einschalten auf AP und Station
-        result = waitAtResponse("OK", "ERROR", "None", 1000)
+        //sendAtCmd("AT+CWDHCP_CUR=2,1") //DHCP einschalten auf AP und Station
+        //result = waitAtResponse("OK", "ERROR", "None", 1000)
 
         sendAtCmd(`AT+CWJAP="${ssid}","${passwd}"`)
         result = waitAtResponse("WIFI GOT IP", "ERROR", "None", 20000)
