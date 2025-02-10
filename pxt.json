@@ -9,7 +9,6 @@
     "files": [
         "README.md",
         "main.ts",
-       
         "blocks/GroveAHT20.ts",
         "sensors/AHT20.ts"
     ],
