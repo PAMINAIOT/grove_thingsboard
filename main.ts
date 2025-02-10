@@ -665,7 +665,7 @@ namespace grove {
         sendAtCmd("AT")
         result = waitAtResponse("OK", "ERROR", "None", 1000)
 
-        sendAtCmd("AT+CWMODE=3") //Test DualMode auf 1 vorher 3
+        sendAtCmd("AT+CWMODE=3") //Test DualMode auf 3 vorher 1
         result = waitAtResponse("OK", "ERROR", "None", 1000)
         
         
